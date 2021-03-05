@@ -3,6 +3,7 @@ const path = require('path');
 var express = require('express');
 let mysql = require('mysql');
 var cors = require('cors')
+const bodyParser = require('body-parser');
 var app = express();
 const PORT = process.env.PORT || 5000;
 const { Pool } = require('pg');
@@ -13,6 +14,7 @@ const pool = new Pool({
   }
 });
 app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/alm', async (req, res) => {
     try {
       const client = await pool.connect();
