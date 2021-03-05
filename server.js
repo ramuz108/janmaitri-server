@@ -26,7 +26,7 @@ app.get('/alm', async (req, res) => {
     }
   })
 app.post('/alert', async (req, res) => {
-    const nodename = req.body.node_name;
+    const nodename = req.body.nodename;
     const ndate = req.body.date;
     const ntime = req.body.time; 
     try {
