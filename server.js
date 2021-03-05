@@ -25,6 +25,21 @@ app.get('/alm', async (req, res) => {
       res.send("Error " + err);
     }
   })
+app.post('/alert', async (req, res) => {
+    const nodename = req.body.node_name;
+    const ndate = req.body.date;
+    const ntime = req.body.time; 
+    try {
+      const client = await pool.connect();
+      const result = await client.query('INSERT INTO alerts(node_name,date,time) VALUES ('+nodename+','+ndate+','+ntime+'');
+      const results = { 'results': (result) ? result.rows : null};
+      res.send(results);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
  app.listen(PORT, () => {
 	console.log(`server started on port ${PORT}`);
   });
