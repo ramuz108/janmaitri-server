@@ -26,10 +26,10 @@ app.get('/alm', async (req, res) => {
     }
   })
 app.post('/alert', async (req, res) => {
-    var nodename = req.body.nodename;
-    var ndate = req.body.date;
-    var ntime = req.body.time; 
     try {
+      var nodename = req.body.nodename;
+      var ndate = req.body.date;
+      var ntime = req.body.time; 
       const client = await pool.connect();
       const result = await client.query('INSERT INTO alerts(node_name,date,time) VALUES ('+nodename+','+ndate+','+ntime+'');
       const results = { 'results': (result) ? result.rows : null};
