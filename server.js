@@ -34,6 +34,7 @@ app.post('/alert', async (req, res) => {
       var ntime = req.body.time; 
       const client = await pool.connect();
       const result = await client.query('INSERT INTO alerts(node_name,date,time) VALUES ('+nodename+','+ndate+','+ntime+'');
+      console.log(client);
       const results = { 'results': (result) ? result.rows : null};
       res.send(results);
       client.release();
