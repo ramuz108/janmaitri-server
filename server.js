@@ -2,6 +2,7 @@ const request = require('request');
 const path = require('path');
 var express = require('express');
 let mysql = require('mysql');
+var cors = require('cors')
 var app = express();
 const PORT = process.env.PORT || 5000;
 const { Pool } = require('pg');
@@ -11,7 +12,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-
+app.use(cors())
 app.get('/alm', async (req, res) => {
     try {
       const client = await pool.connect();
