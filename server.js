@@ -26,9 +26,9 @@ app.get('/alm', async (req, res) => {
     }
   })
 app.post('/alert', async (req, res) => {
-    const nodename = req.body.nodename;
-    const ndate = req.body.date;
-    const ntime = req.body.time; 
+    var nodename = req.body.nodename;
+    var ndate = req.body.date;
+    var ntime = req.body.time; 
     try {
       const client = await pool.connect();
       const result = await client.query('INSERT INTO alerts(node_name,date,time) VALUES ('+nodename+','+ndate+','+ntime+'');
